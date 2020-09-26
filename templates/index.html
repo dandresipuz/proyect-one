@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}
+  Tutorial Flask: Mini Blog
+{% endblock %}
+
+{% block content %}
+  <ul>
+    {% for post in posts %}
+      <li>{{ post.title }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
