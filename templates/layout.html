@@ -34,11 +34,14 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="{{ url_for('index') }}"> Home </a></li>
+              {% if current_user.is_anonymous %}
+                <li><a href="{{ url_for('login') }}"> Login </a></li>
+                <li><a href="{{ url_for('show_signup_form') }}">Registrar</a></li>
+              {% else %}
+                <li><a> {{ current_user.name }} </a></li>
+                <li><a href="{{ url_for('logout') }}"> Salir </a></li>
+              {% endif %}
             </ul>
           </div>
           <!-- /.Navbar-collapse -->
@@ -49,7 +52,7 @@
       <div class="container text-center">
         <div class="center">
           <div class="col-md-6 col-md-offset-3">
-            <h4>{% block content %} {% endblock %}</h4>
+            {% block content %} {% endblock %}
             <hr>
           </div>
         </div>
